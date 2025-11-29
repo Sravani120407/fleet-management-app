@@ -99,8 +99,7 @@
                 <option value="All">All Status</option>
                 <option value="Available">Available</option>
                 <option value="Unavailable">Unavailable</option>
-                </select>
-                </select>
+            </select>
                 <button onclick="clearFilters()">Clear Filter</button>
         </div>
     </div>
@@ -140,6 +139,7 @@
     </div>
     <script>
         let fleetData = [];
+        let currentAvailabilityFilter = 'All';
         document.getElementById('fleetform').addEventListener('submit', function(e) {
             e.preventDefault();
             const regNo = document.getElementById('regNo').value;
@@ -163,9 +163,10 @@
             if (categoryFilter !== 'All') {
                 filteredData = filteredData.filter(f => f.category === categoryFilter);
             }
-            if(availabilityFilter !=='All') {
-                const isAvailable = availabilityFilter === 'Available';
-                filteredData = filteredData.filter(f => f.isAvailable === isAvailable);
+            if(availabilityFilter ==='Available') {
+                filteredData = filteredData.filter(f => f.isAvailable=== true);
+            } else if (availabilityFilter === 'Unavailable') {
+                filteredData = filteredData.filter(f => !f.isAvailable === true);
             }
             container.innerHTML = '';
             filteredData.forEach((fleet, index) => {
@@ -179,9 +180,9 @@
                     <p>Driver: ${fleet.driverName}</p>
                     <p>Status: ${fleet.isAvailable ? 'Available' : 'Unavailable'}</p>
                     <div class="card-buttons">
-                        <button onclick="updateDriver(${actualIndex})">Update Driver</button>
-                        <button onclick="toggleAvailability(${actualIndex})">Change Availability</button>
-                        <button onclick="deleteVehicle(${actualIndex})">Delete Vehicle</button>
+                        <button class="btn-toggle" onclick="updateDriver(${actualIndex})">Update Driver</button>
+                        <button class="btn-toggle" onclick="toggleAvailability(${actualIndex})">Change Availability</button>
+                        <button class="btn-delete" onclick="deleteVehicle(${actualIndex})">Delete Vehicle</button>
                     </div>
                     `;
                 container.appendChild(card);
