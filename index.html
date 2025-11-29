@@ -57,11 +57,14 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
         </div>
+        <br>
+        <div class="form-group">
         <button type="submit">Login</button>
+        </div>
     </form>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             if (email === 'admin@gmail.com' && password === 'admin1234') {

@@ -134,6 +134,10 @@
                 <button type="submit">Add Fleet</button>         
         </form>
     </div>
+    <div class="main">
+        <h3>Fleet Vehicles</h3>
+        <div id="fleetCards" class="fleet-cards"></div>
+    </div>
     <script>
         let fleetData = [];
         document.getElementById('fleetform').addEventListener('submit', function(e) {
@@ -169,7 +173,7 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <img src="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png" alt="Vehicle Image">
+                    <img src="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png=${fleet.category}" alt="Vehicle Image">
                     <h4>Reg No: ${fleet.regNo}</h4>
                     <p>Category: ${fleet.category}</p>
                     <p>Driver: ${fleet.driverName}</p>
